@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "date": "02-01-2022",
+    "price": 120,
+    "description": "douche",
+    "category": "health/medical",
+    "type": "income"
+  },
+  {
+    "id": 2,
+    "date": "02-01-2022",
+    "price": 20,
+    "description": "mechoir",
+    "category": "health/medical",
+    "type": "income"
+  },
+  {
+    "id": 3,
+    "date": "02-01-2022",
+    "price": 120,
+    "description": "chawarma",
+    "category": "food",
+     "type": "income"
+ },
+  {
+    "id": 4,
+    "date": "03-01-2022",
+    "price": 100,
+    "description": "ftor",
+    "category": "food",
+     "type": "expense"
+ },
+  {
+    "id": 5,
+    "date": "04-01-2022",
+    "price": 60,
+    "description": "pizza",
+    "category": "food",
+    "type": "income"
+  },
+  {
+    "id": 6,
+    "date": "04-01-2022",
+    "price": 600,
+    "description": "bouni",
+    "category": "clothing",
+    "type": "expense"
+  }
+]

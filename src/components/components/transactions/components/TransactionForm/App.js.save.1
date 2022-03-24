@@ -1,0 +1,142 @@
+import React, {useState, useEffect} from 'react';
+
+import db from '../../../../../configs/db.js'
+
+
+function TransactionForm(props){
+
+  const {isVisible} = props
+  // States
+  const [date, setDate] = useState(new Date().toISOString().slice(0, -14))
+  const [price, setPrice] = useState(0)
+  const [description, setDescription] = useState('')
+  const [category, setCategory] = useState('food')
+  const [type, setType] = useState('expense')
+
+  const categories = {
+    income  : ['paycheck', 'savings', 'bonus'],
+    expense : ['food', 'health', 'cleaning', 'cloths', 'furniture','utilities', 'transport', 'travel', 'other']
+  }
+  // Add New Record
+  async function recordInsert(){
+    try{
+      await db.record.add({date})
+      await db.items.add({price, description})
+      await db.type.add({type})
+      await db.category.add({category})
+    }catch (error) {
+      alert(`ERROR: ${error}`);
+    }
+  }
+  /********** STYLE **********/
+  let style_transaction_form_layer = {
+    display: (isVisible)? 'block' :'none',
+    position: 'absolute',
+    top: '0px',
+    left: '0px',
+    width: '100vw',
+    height: '100vh',
+    background: 'rgba(100,100,100, 0.8)',
+    zIndex: '5'
+  }
+  let style_form = {
+    display: (isVisible)? 'block' :'none',
+    position: 'absolute',
+    top: '10%',
+    left: '5%',
+    width: '90%',
+    padding: '8px 10px 0px',
+    background: 'white',
+    border: '1px lightgray solid',
+    borderRadius: '8px',
+    zIndex: '15'
+  }
+  let style_h1= {
+    color: 'gray',
+    textAlign: 'center',
+    fontSize: '20pt'
+  }
+  let style_form_inputs = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+  let style_input_container = {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+    padding: '5px',
+  }
+  let style_label = {
+    margin: '5px 0px 0px'
+  }
+  let style_input={
+    width: '100%',
+    padding: '8px',
+    borderBottom: '1px lightgray solid',
+    textAlign: 'center'
+  }
+  let styleAddBtn = {
+    width: '100%',
+    padding: '10px 0px',
+    margin: '10px 0px 0px',
+    background: 'lightgray',
+    borderTopRightRadius: '8px',
+    borderTopLeftRadius: '8px',
+  }
+  /********** END STYLE **********/
+
+
+  return(
+    <div>
+
+      <div style={style_transaction_form_layer}></div>
+
+        <div id='transaction_form' style={style_form}>
+
+          <h1 style={style_h1}>Add Record</h1>
+
+          <div id='transaction_form_inputs' style={style_form_inputs}>
+            <div style={style_input_container}>
+              <label for='date' style={style_label}>Date</label>
+              <input id='date' style={style_input} name='date' type='date' onChange={e=> setDate(e.target.value)} value={date} />
+            </div>
+            <div style={style_input_container}>
+              <label for='price' style={style_label}>Price</label>
+              <input id='price' style={style_input} name='price' type='text' onChange={e=> setPrice(e.target.value)} placeholder='120 DA' />
+            </div>
+            <div style={style_input_container}>
+              <label for='description' style={style_label}>Description</label>
+              <input id='description' style={style_input} name='description' type='text' onChange={e=> setDescription(e.target.value)} placeholder='chawarma' />
+            </div>
+            <div style={style_input_container}>
+              <label for='category' style={style_label}>Category</label>
+              <select name="category" id="category" style={style_input} onChange={e=> setCategory(e.target.value)}>
+                {/*generating categories list*/}
+                {categories[type].map(el=>{
+                   return <option value={el}>{el}</option>
+                  })
+                }
+              </select>
+            </div>
+            <div style={style_input_container}>
+              <label for='type' style={style_label}>Type</label>
+              <select name="type" id="type" style={style_input} onChange={e=> setType(e.target.value)}>
+                <option value="expense">Expense</option>
+                <option value="income">Income</option>
+              </select>
+            </div>
+          </div>
+
+          <button id='transaction_add_record' style={styleAddBtn} onClick={recordInsert}>ADD</button>
+
+        </div>
+
+    </div>
+  )
+}
+
+export default(TransactionForm)

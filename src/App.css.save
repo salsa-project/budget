@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+#display_container{
+  background: black;
+}
+#display_container p{
+  color: gray;
+}
+#display_container p+p{
+  bac
+}

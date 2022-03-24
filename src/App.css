@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.btn:hover{
+  background: gray;
+  color: white;
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+#transactions_container{
+  width: 100%;
+}
+#dashboard_container, #calendar_container{
+  display: none;
+}
+
+/*******************************
+          TRANSACTIONS
+*******************************/
+#title{
+  padding: 10px;
+  background: rgb(240,240,240);
+  font-family: "monospace";
+  font-size: 18pt;
+  text-align: center;
+}
+.btn_trans{
+  width: 50%;
+  padding: 8px;
+  margin: 10px 0px;
+  color: white;
+  border-bottom-right-radius: 20px;
+  border-top-right-radius: 20px;
+}
+table {
+  display: table;
+  border-collapse: collapse;
+  border-spacing: 2px;
+  border: 1px solid gray;
+  width: 100%;
+}
+th, td {
+  padding: 8px 5px;
+  text-align: center;
+  border-bottom: 1px solid gray;
+}
+th {
+  background-color: #8474a1;
+  color: white;
+}
+tr:hover {
+  background-color: #f5f5f5;
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
